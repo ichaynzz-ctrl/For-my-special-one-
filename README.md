@@ -1,5 +1,3 @@
-# For-my-special-one-
-Itz for u devuzzee
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,15 +111,10 @@ Itz for u devuzzee
     <div class="signature">– From someone who smiles because of you 🙈</div>
 </div>
 
-<audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
-
 <script>
     const yesBtn = document.getElementById('yes');
     const noBtn = document.getElementById('no');
     const letter = document.getElementById('letter');
-    const bgMusic = document.getElementById('bgMusic');
 
     // Mobile-friendly Yes button
     yesBtn.addEventListener('click', showLetter);
@@ -129,7 +122,6 @@ Itz for u devuzzee
 
     function showLetter(e){
         e.preventDefault();
-        bgMusic.play();
         letter.style.display = 'block';
         yesBtn.style.display = 'none';
         noBtn.style.display = 'none';
@@ -156,8 +148,7 @@ Itz for u devuzzee
         setTimeout(()=>love.remove(), 1000);
     }
 
-  
- // Floating hearts continuously
+    // Floating hearts continuously
     setInterval(()=>{
         const heart = document.createElement('div');
         heart.className = 'heart';
