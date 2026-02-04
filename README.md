@@ -12,6 +12,7 @@
             color: white;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         h1 {
@@ -20,14 +21,15 @@
         }
 
         p {
-            font-size: 18px;
-            line-height: 1.8;
+            font-size: 22px;
+            font-weight: bold;
             max-width: 600px;
             margin: 20px auto;
         }
 
-        .signature {
+        .lyrics {
             margin-top: 20px;
+            font-size: 16px;
             font-style: italic;
         }
 
@@ -39,19 +41,26 @@
             border-radius: 20px;
             cursor: pointer;
             position: relative;
-            z-index: 10; /* Above hearts */
+            z-index: 10;
         }
 
-        #yes { background-color: #00ff88; }
-        #no { background-color: #ff4d4d; position: absolute; top: 150px; left: 50%; transform: translateX(-50%); }
+        #yes { 
+            background-color: #ff69b4; /* Soft pink */
+        }
+        #no { 
+            background-color: #ff4d4d; 
+            position: absolute; 
+            top: 150px; 
+            left: 50%; 
+            transform: translateX(-50%);
+        }
 
-        /* Floating hearts */
         .heart {
             position: fixed;
             color: pink;
             font-size: 20px;
             animation: float 4s linear infinite;
-            pointer-events: none; /* So buttons clickable */
+            pointer-events: none;
             z-index: 1;
         }
 
@@ -60,7 +69,6 @@
             100% { transform: translateY(-800px); opacity: 0; }
         }
 
-        /* I LOVE YOU pop */
         .love-pop {
             position: fixed;
             color: red;
@@ -75,7 +83,25 @@
             100% { transform: scale(2); opacity: 0; }
         }
 
-        #letter { display: none; }
+        .star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: twinkle 2s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0.2; transform: scale(1); }
+        }
+
+        #letter { display: none; text-align: center; }
     </style>
 </head>
 <body>
@@ -86,48 +112,47 @@
 <button id="no">No 😏</button>
 
 <div id="letter">
-    <p>
-    Devuzze… ❤️<br><br>
-    If you’re reading this, it means you scanned something made only for you 🤭<br>
-    I don’t know when it started…<br>
-    Maybe from that first call,<br>
-    maybe from your silly 😝 face,<br>
-    or maybe from the way you say “dahhh” before cutting the call…<br><br>
-    But somewhere between all those little moments,<br>
-    you became special to me.<br>
-    Not loudly.<br>
-    Not suddenly.<br>
-    Just peacefully… like stars appearing one by one 🌠<br><br>
-    You irritate me, tease me, make me smile for no reason…<br>
-    and I think that’s my favorite part.<br><br>
-    I don’t know what the future holds.<br>
-    But right now, I just want you to know —<br>
-    You make my days softer.<br>
-    You make my heart calmer.<br>
-    And you mean more to me than I say out loud.<br><br>
-    Happy Valentine’s Day, Devu ❤️
-    </p>
-
-    <div class="signature">– From someone who smiles because of you 🙈</div>
+    <p id="loveLetter"></p>
+    <div class="lyrics" id="lyricsText">“En uyrin uyreayy njjnum”</div>
 </div>
+
+<audio id="customMusic">
+    <source src="mehabooba.mp3" type="audio/mp3">
+    Your browser does not support audio.
+</audio>
 
 <script>
     const yesBtn = document.getElementById('yes');
     const noBtn = document.getElementById('no');
     const letter = document.getElementById('letter');
+    const music = document.getElementById('customMusic');
+    const loveLetter = document.getElementById('loveLetter');
 
-    // Mobile-friendly Yes button
+    // Your single special line
+    const letterText = `Ur not just my best friend — ur the one that the soul who understands my silence 😭💫`;
+
+    function typeText(element, text, speed = 50) {
+        let i = 0;
+        element.innerHTML = '';
+        const interval = setInterval(() => {
+            element.innerHTML += text[i];
+            i++;
+            if (i >= text.length) clearInterval(interval);
+        }, speed);
+    }
+
     yesBtn.addEventListener('click', showLetter);
     yesBtn.addEventListener('touchstart', showLetter);
 
     function showLetter(e){
         e.preventDefault();
+        music.play();
         letter.style.display = 'block';
         yesBtn.style.display = 'none';
         noBtn.style.display = 'none';
+        typeText(loveLetter, letterText, 50);
     }
 
-    // Mobile-friendly No button
     noBtn.addEventListener('click', moveNo);
     noBtn.addEventListener('touchstart', moveNo);
 
@@ -148,7 +173,6 @@
         setTimeout(()=>love.remove(), 1000);
     }
 
-    // Floating hearts continuously
     setInterval(()=>{
         const heart = document.createElement('div');
         heart.className = 'heart';
@@ -158,6 +182,17 @@
         document.body.appendChild(heart);
         setTimeout(()=>heart.remove(), 4000);
     }, 500);
+
+    setInterval(()=>{
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * window.innerWidth + 'px';
+        star.style.top = Math.random() * window.innerHeight + 'px';
+        star.style.width = Math.random()*3 + 2 + 'px';
+        star.style.height = Math.random()*3 + 2 + 'px';
+        document.body.appendChild(star);
+        setTimeout(()=>star.remove(), 2000 + Math.random()*2000);
+    }, 300);
 </script>
 
 </body>
