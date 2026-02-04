@@ -116,6 +116,7 @@
     const letter = document.getElementById('letter');
     const loveLetter = document.getElementById('loveLetter');
 
+    // Your special line
     const letterText = `Ur not just my best friend — ur the one that the soul who understands my silence 😭💫`;
 
     function typeText(element, text, speed = 50) {
