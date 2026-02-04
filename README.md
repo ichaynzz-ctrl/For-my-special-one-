@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Devuzze ❤️ Valentine Surprise</title>
+    <title>For Devuzzee ❤️</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -16,7 +16,7 @@
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 34px;
             margin-bottom: 20px;
         }
 
@@ -25,12 +25,6 @@
             font-weight: bold;
             max-width: 600px;
             margin: 20px auto;
-        }
-
-        .lyrics {
-            margin-top: 20px;
-            font-size: 16px;
-            font-style: italic;
         }
 
         button {
@@ -45,8 +39,9 @@
         }
 
         #yes { 
-            background-color: #ff69b4; /* Soft pink */
+            background-color: #ff69b4;
         }
+
         #no { 
             background-color: #ff4d4d; 
             position: absolute; 
@@ -106,29 +101,21 @@
 </head>
 <body>
 
-<h1>Will you be my Valentine? 💘</h1>
+<h1>Itz for u Devuzzee my spcl one 😭🎀</h1>
 
-<button id="yes">Yes 💖</button>
-<button id="no">No 😏</button>
+<button id="yes">Open 💖</button>
+<button id="no">Ignore 😏</button>
 
 <div id="letter">
     <p id="loveLetter"></p>
-    <div class="lyrics" id="lyricsText">“En uyrin uyreayy njjnum”</div>
 </div>
-
-<audio id="customMusic">
-    <source src="mehabooba.mp3" type="audio/mp3">
-    Your browser does not support audio.
-</audio>
 
 <script>
     const yesBtn = document.getElementById('yes');
     const noBtn = document.getElementById('no');
     const letter = document.getElementById('letter');
-    const music = document.getElementById('customMusic');
     const loveLetter = document.getElementById('loveLetter');
 
-    // Your single special line
     const letterText = `Ur not just my best friend — ur the one that the soul who understands my silence 😭💫`;
 
     function typeText(element, text, speed = 50) {
@@ -146,7 +133,6 @@
 
     function showLetter(e){
         e.preventDefault();
-        music.play();
         letter.style.display = 'block';
         yesBtn.style.display = 'none';
         noBtn.style.display = 'none';
